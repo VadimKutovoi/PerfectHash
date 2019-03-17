@@ -26,4 +26,23 @@ public:
     void rehash();
 };
 
+uhash::uhash(unsigned int _table_size) {
+    table_size = _table_size;
+    table_size > 16 ? prime = 1198754321 : prime = 433494437;
+    std::vector<int> table(table_size);
+}
+
+std::mt19937 uhash::gen(time(0));
+std::uniform_int_distribution<uint> uhash::random(0, UINT32_MAX);
+
+uint uhash::hash(int key, int alpha, int betta) {
+    if (table_size == 1)
+        return 0;
+    return (alpha * key + betta) % prime % table_size;
+}
+
+void uhash::rehash() {
+    alpha = random(gen) % (prime - 1);
+}
+
 #endif // !SUH
