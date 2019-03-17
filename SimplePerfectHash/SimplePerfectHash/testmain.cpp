@@ -7,7 +7,7 @@
 int main() {
     std::vector<uint> test_table(HASH_TABLE_SIZE);
     std::vector<int> test_data;
-    uhash uh(HASH_TABLE_SIZE);
+    unihash uh(HASH_TABLE_SIZE);
 
     for (int i = 0; i <= DATA_VECTOR_SIZE; ++i)
         test_data.push_back(i);

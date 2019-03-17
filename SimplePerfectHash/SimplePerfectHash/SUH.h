@@ -10,7 +10,7 @@ using uint = unsigned int;
 #ifndef SIMPLE_UNIVERSAL_HASH
 #define SIMPLE_UNIVERSAL_HASH
 
-class uhash
+class unihash
 {
 private:
     uint prime = -1;
@@ -20,27 +20,27 @@ private:
     static std::mt19937 gen;
     static std::uniform_int_distribution<uint> random;
 public:
-    uhash(uint _table_size);
+    unihash(uint _table_size);
     uint hash(int key);
     void rehash();
     uint add();
 };
 
-uhash::uhash(uint _table_size) {
+unihash::unihash(uint _table_size) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
 }
 
-std::mt19937 uhash::gen(time(0));
-std::uniform_int_distribution<uint> uhash::random(0, UINT32_MAX);
+std::mt19937 unihash::gen(time(0));
+std::uniform_int_distribution<uint> unihash::random(0, UINT32_MAX);
 
-uint uhash::hash(int key) {
+uint unihash::hash(int key) {
     if (alpha == -1 || betta == -1) rehash();
     if (table_size == 1) return 0;
     return (alpha * key + betta) % prime % table_size;
 }
 
-void uhash::rehash() {
+void unihash::rehash() {
     alpha = random(gen) % (prime - 1);
     if (alpha == 0) ++alpha;
     betta = random(gen) % (betta - 1);
