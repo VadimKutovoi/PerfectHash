@@ -16,7 +16,6 @@ private:
     uint prime;
     uint alpha;
     uint betta;
-    size_t table_size;
     std::vector<int> table;
     static std::mt19937 gen;
     static std::uniform_int_distribution<uint> random;
@@ -26,16 +25,16 @@ public:
     void rehash();
 };
 
-uhash::uhash(unsigned int _table_size) {
-    table_size = _table_size;
-    table_size > 16 ? prime = 1198754321 : prime = 433494437;
-    std::vector<int> table(table_size);
+uhash::uhash(uint _table_size) {
+    std::vector<int> table(_table_size);
+    _table_size > 16 ? prime = 1198754321 : prime = 433494437;
 }
 
 std::mt19937 uhash::gen(time(0));
 std::uniform_int_distribution<uint> uhash::random(0, UINT32_MAX);
 
 uint uhash::hash(int key, int alpha, int betta) {
+    uint table_size = table.size;
     if (table_size == 1)
         return 0;
     return (alpha * key + betta) % prime % table_size;
