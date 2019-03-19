@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SPH.h" />
     <ClInclude Include="SUH.h" />
   </ItemGroup>
   <ItemGroup>
