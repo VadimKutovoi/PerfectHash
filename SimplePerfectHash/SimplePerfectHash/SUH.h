@@ -15,21 +15,33 @@ private:
     uint prime = -1;
     uint alpha = -1;
     uint betta;
+
     uint table_size;
+
     std::vector<bool> is_in_table;
     std::vector<int> table;
+
     static std::mt19937 gen;
     static std::uniform_int_distribution<uint> random;
 public:
     unihash(uint _table_size);
+
     uint hash(int key);
     void rehash();
+
     uint add(int item);
-    int get_cell(int cell_number);
-    void build_table(std::vector<int> data);
     int find(int item);
+    int getCell(int cell_number);
+    void buildTable(std::vector<int> data);
+
+    uint getAlpha() { return alpha; }
+    uint getBetta() { return betta; }
+
+    std::mt19937 getGen() { return gen; }
+    std::uniform_int_distribution<uint> getRandom() { return random; }
 };
 
+template<typename T>
 unihash::unihash(uint _table_size) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
@@ -74,12 +86,12 @@ uint unihash::add(int item)
         return 1;
 }
 
-inline int unihash::get_cell(int cell_number)
+inline int unihash::getCell(int cell_number)
 {
     return table.at(cell_number);
 }
 
-inline void unihash::build_table(std::vector<int> data)
+inline void unihash::buildTable(std::vector<int> data)
 {
     uint i = 0, hash_result = 0;
 
