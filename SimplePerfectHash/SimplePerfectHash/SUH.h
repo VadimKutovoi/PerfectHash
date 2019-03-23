@@ -41,7 +41,6 @@ public:
     std::uniform_int_distribution<uint> getRandom() { return random; }
 };
 
-template<typename T>
 unihash::unihash(uint _table_size) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
