@@ -27,11 +27,11 @@ int main() {
         test_data.push_back(*it);
     }
 
-    auto start_time_map = std::chrono::high_resolution_clock::now();
+   /* auto start_time_map = std::chrono::high_resolution_clock::now();
     std::map<int, int> test_map(test_data.begin(), test_data.end());
     auto end_time_map = std::chrono::high_resolution_clock::now();
     auto time_map = end_time_map - start_time_map;
-    std::cout << "Map time : " << time_map / std::chrono::milliseconds(1) << std::endl;
+    std::cout << "Map time : " << time_map / std::chrono::milliseconds(1) << std::endl;*/
     
 
     // UNIVERSAL HASH TESTING
