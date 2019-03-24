@@ -3,7 +3,7 @@
 #include <iostream>
 
 #define HASH_TABLE_SIZE 15
-#define DATA_VECTOR_SIZE 3
+#define DATA_VECTOR_SIZE 10
 
 int main() {
     // UNIVERSAL HASH TESTING

@@ -32,7 +32,7 @@ inline uint perfhash::buildTable(std::vector<int> data)
         unihash secondLvlTable(prehash_table[i].size() * prehash_table[i].size());
         main_table[i] = secondLvlTable;
         
-        for (int j = 0; j < prehash_table[j].size(); j++) {
+        for (int j = 0; j < prehash_table[i].size(); j++) {
             main_table[i].add(prehash_table[i][j]);
         }
     }
