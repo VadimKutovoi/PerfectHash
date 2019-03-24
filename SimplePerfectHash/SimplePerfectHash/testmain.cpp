@@ -15,11 +15,11 @@ int main() {
         std::cout << test_data[i] << std::endl;
 
     uh.rehash();
-    uh.build_table(test_data);
+    uh.buildTable(test_data);
 
     std::cout << "Hashing results" << std::endl;
     for (int i = 0; i < HASH_TABLE_SIZE; ++i)
-        std::cout << uh.get_cell(i) << std::endl;
+        std::cout << uh.getCell(i) << std::endl;
 
     std::cout << "Comparing results..." << std::endl;
 
