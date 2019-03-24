@@ -47,7 +47,6 @@ public:
 unihash::unihash(uint _table_size = 0) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
-    
     rehash();
 }
 
@@ -97,7 +96,7 @@ inline void unihash::buildTable(std::vector<int> data)
         hash_result = add(data[i]);
         i++;
         if (hash_result == 1) {
-            std::cout << "Collision! Rehashing!" << std::endl;
+            //std::cout << "Collision! Rehashing!" << std::endl;
             rehash();
             i = 0;
             hash_result = 0;

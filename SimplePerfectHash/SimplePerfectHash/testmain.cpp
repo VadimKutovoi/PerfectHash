@@ -1,9 +1,10 @@
 #include "SUH.h"
 #include "SPH.h"
 #include <iostream>
+#include <chrono>
 
-#define HASH_TABLE_SIZE 15
-#define DATA_VECTOR_SIZE 100
+#define HASH_TABLE_SIZE  1000000
+#define DATA_VECTOR_SIZE 10000000
 
 int main() {
     uint err_count = 0;
@@ -15,11 +16,7 @@ int main() {
 
     for (int i = 0; i < DATA_VECTOR_SIZE; ++i)
         test_data.push_back(i);
-
-    //*for (int i = 0; i < DATA_VECTOR_SIZE; ++i)
-    //    std::cout << test_data[i] << std::endl;*/
-
-    //uh.rehash();
+    
 
     //std::cout << "Unihashing..." << std::endl;
 
@@ -45,8 +42,13 @@ int main() {
     perfhash ph(test_data.size());
 
     std::cout << "Perfhashing..." << std::endl;
-    ph.buildTable(test_data);
 
+    auto start_time = std::chrono::high_resolution_clock::now();
+    ph.buildTable(test_data);
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto time = end_time - start_time;
+
+    std::cout << "Time : " << time / std::chrono::milliseconds(1) << std::endl;
     std::cout << "Comparing perfhash results..." << std::endl;
 
     err_count = 0;
