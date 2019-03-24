@@ -39,6 +39,8 @@ public:
 
     std::mt19937 getGen() { return gen; }
     std::uniform_int_distribution<uint> getRandom() { return random; }
+
+    void print();
 };
 
 unihash::unihash(uint _table_size = 0) {
@@ -100,6 +102,14 @@ inline void unihash::buildTable(std::vector<int> data)
             hash_result = 0;
         }
         else if (i == data.size()) break;
+    }
+}
+inline void unihash::print()
+{
+    std::cout << "-------" << std::endl;
+    for (int i = 0; i < table_size; i++) {
+        std::cout << i << " | " << getCell(i) << std::endl;
+        std::cout << "-------" << std::endl;
     }
 }
 inline int unihash::find(int item)

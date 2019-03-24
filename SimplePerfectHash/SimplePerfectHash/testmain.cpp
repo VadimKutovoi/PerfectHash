@@ -21,8 +21,7 @@ int main() {
     uh.buildTable(test_data);
 
     std::cout << "Hashing results" << std::endl;
-    for (int i = 0; i < HASH_TABLE_SIZE; ++i)
-        std::cout << uh.getCell(i) << std::endl;
+    uh.print();
 
     std::cout << "Comparing results..." << std::endl;
 
