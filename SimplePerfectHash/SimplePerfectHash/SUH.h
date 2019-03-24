@@ -14,7 +14,7 @@ class unihash
 private:
     uint prime = -1;
     uint alpha = -1;
-    uint betta;
+    uint betta = -1;
 
     uint table_size;
 
@@ -36,6 +36,7 @@ public:
 
     uint getAlpha() { return alpha; }
     uint getBetta() { return betta; }
+    uint getSize() { return table_size; }
 
     std::mt19937 getGen() { return gen; }
     std::uniform_int_distribution<uint> getRandom() { return random; }
@@ -62,7 +63,7 @@ uint unihash::hash(int key) {
 void unihash::rehash() {
     alpha = random(gen) % (prime - 1);
     if (alpha == 0) ++alpha;
-    betta = random(gen) % (betta - 1);
+    betta = random(gen) % (prime - 1);
 
     std::vector<bool> tmp_vec(table_size, false);
     is_in_table = tmp_vec;

@@ -1,4 +1,5 @@
 #include "SUH.h"
+#include <string>
 
 #ifndef SIMPLE_PERFECT_HASH
 #define SIMPLE_PERFECT_HASH
@@ -11,6 +12,7 @@ public:
     perfhash(uint _table_size);
 
     uint buildTable(std::vector<int> data);
+    int find(int key);
 };
 
 perfhash::perfhash(uint _table_size) : unihash(_table_size) {
@@ -29,14 +31,20 @@ inline uint perfhash::buildTable(std::vector<int> data)
     }
 
     for (int i = 0; i < prehash_table.size(); i++) {
-        unihash secondLvlTable(prehash_table[i].size() * prehash_table[i].size());
-        main_table[i] = secondLvlTable;
-        
-        for (int j = 0; j < prehash_table[i].size(); j++) {
-            main_table[i].add(prehash_table[i][j]);
+        if (prehash_table[i].size() > 0) {
+            unihash secondLvlTable(prehash_table[i].size() * prehash_table[i].size());
+            main_table[i] = secondLvlTable;
+
+            main_table[i].buildTable(prehash_table[i]);
         }
     }
     return uint();
+}
+
+int perfhash::find(int key) {
+    uint first_lvl_hash_result = hash(key);
+
+    return main_table[first_lvl_hash_result].find(key);
 }
 
 #endif
