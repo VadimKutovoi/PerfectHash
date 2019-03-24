@@ -1,10 +1,13 @@
 #include "SUH.h"
+#include "SPH.h"
 #include <iostream>
 
 #define HASH_TABLE_SIZE 15
-#define DATA_VECTOR_SIZE 10
+#define DATA_VECTOR_SIZE 3
 
 int main() {
+    // UNIVERSAL HASH TESTING
+
     std::vector<int> test_data;
     unihash uh(HASH_TABLE_SIZE);
 
@@ -27,4 +30,10 @@ int main() {
         int item = uh.find(test_data[i]);
         std::cout << item << std::endl;
     }
+
+    //PERFECT HASH TESTING
+    
+    perfhash ph(test_data.size());
+
+    ph.buildTable(test_data);
 }

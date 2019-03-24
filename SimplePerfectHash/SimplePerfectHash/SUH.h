@@ -41,15 +41,11 @@ public:
     std::uniform_int_distribution<uint> getRandom() { return random; }
 };
 
-unihash::unihash(uint _table_size) {
+unihash::unihash(uint _table_size = 0) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
     
-    std::vector<int> tmp_table(table_size, 0);
-    table = tmp_table;
-    
-    std::vector<bool> tmp_vec(table_size, false);
-    is_in_table = tmp_vec;
+    rehash();
 }
 
 std::mt19937 unihash::gen(time(0));

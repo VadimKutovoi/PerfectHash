@@ -10,12 +10,15 @@ private:
 public:
     perfhash(uint _table_size);
 
-    uint build_table(std::vector<int> data);
+    uint buildTable(std::vector<int> data);
 };
 
-perfhash::perfhash(uint _table_size) : unihash(_table_size) {}
+perfhash::perfhash(uint _table_size) : unihash(_table_size) {
+    std::vector<unihash> tmp_table(_table_size);
+    main_table = tmp_table;
+}
 
-inline uint perfhash::build_table(std::vector<int> data)
+inline uint perfhash::buildTable(std::vector<int> data)
 {
     uint hash_result = 0;
     std::vector<std::vector<int>> prehash_table(data.size());
