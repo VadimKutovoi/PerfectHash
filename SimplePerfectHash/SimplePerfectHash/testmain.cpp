@@ -1,22 +1,42 @@
 #include "SUH.h"
 #include "SPH.h"
 #include <iostream>
+#include <set>
 #include <chrono>
+#include <map>
 
 #define HASH_TABLE_SIZE  1000000
-#define DATA_VECTOR_SIZE 10000000
+#define DATA_VECTOR_SIZE 1000000
 
 int main() {
     uint err_count = 0;
+    std::vector<int> gen_data;
+    std::vector<int> test_data;
+    
+    std::random_device rd;  
+    std::mt19937 gen(rd()); 
+    std::uniform_int_distribution<> rand(1, INT_MAX);
+
+    for (int i = 0; i < DATA_VECTOR_SIZE; ++i)
+        gen_data.push_back(rand(gen));
+
+    std::set<int> data_set(gen_data.begin(), gen_data.end());
+    std::set<int>::iterator it;
+
+    for (it = data_set.begin(); it != data_set.end(); ++it) {
+        test_data.push_back(*it);
+    }
+
+    auto start_time_map = std::chrono::high_resolution_clock::now();
+    std::map<int, int> test_map(test_data.begin(), test_data.end());
+    auto end_time_map = std::chrono::high_resolution_clock::now();
+    auto time_map = end_time_map - start_time_map;
+    std::cout << "Map time : " << time_map / std::chrono::milliseconds(1) << std::endl;
+    
 
     // UNIVERSAL HASH TESTING
 
-    std::vector<int> test_data;
-    unihash uh(HASH_TABLE_SIZE);
-
-    for (int i = 0; i < DATA_VECTOR_SIZE; ++i)
-        test_data.push_back(i);
-    
+    //unihash uh(HASH_TABLE_SIZE);
 
     //std::cout << "Unihashing..." << std::endl;
 
@@ -52,7 +72,7 @@ int main() {
     std::cout << "Comparing perfhash results..." << std::endl;
 
     err_count = 0;
-    for (int i = 0; i < DATA_VECTOR_SIZE; ++i) {
+    for (int i = 0; i < test_data.size(); ++i) {
         int item = ph.find(test_data[i]);
         if (test_data[i] != item) {
             std::cout << "Error! Element " << test_data[i] << " not in table!" << std::endl;
