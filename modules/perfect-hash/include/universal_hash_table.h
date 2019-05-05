@@ -1,3 +1,5 @@
+// Copyright 2019 Kutovoi Vadim
+
 #include <vector>
 #include <list>
 #include <random>
@@ -24,6 +26,7 @@ class unihash {
     static std::uniform_int_distribution<uint> random;
 
  public:
+    unihash();
     explicit unihash(uint _table_size);
 
     uint hash(int key);

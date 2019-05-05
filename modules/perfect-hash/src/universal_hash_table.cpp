@@ -6,6 +6,12 @@
 std::mt19937 unihash::gen(time(0));
 std::uniform_int_distribution<uint> unihash::random(0, UINT32_MAX);
 
+unihash::unihash() {
+    table_size = 1;
+    table_size > 16 ? prime = 1198754321 : prime = 433494437;
+    rehash();
+}
+
 unihash::unihash(uint _table_size = 0) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
