@@ -1,20 +1,6 @@
-#include <string>
 #include <vector>
 
-#include "include/multiply_shift_hash_table.h"
-
-#ifndef MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_
-#define MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_
-
-class perfhash : public unihash {
- private:
-    std::vector<unihash> main_table;
- public:
-    explicit perfhash(uint _table_size);
-
-    void buildTable(std::vector<int> data);
-    int find(int key);
-};
+#include "include/perfect_hash_table.h"
 
 perfhash::perfhash(uint _table_size) : unihash(_table_size) {
     std::vector<unihash> tmp_table(_table_size);
@@ -46,5 +32,3 @@ int perfhash::find(int key) {
 
     return main_table[first_lvl_hash_result].find(key);
 }
-
-#endif  // MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_
