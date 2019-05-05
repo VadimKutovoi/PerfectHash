@@ -7,19 +7,19 @@ std::mt19937 mshifthash::gen(time(0));
 std::uniform_int_distribution<ullong> mshifthash::random(0, ULLONG_MAX);
 
 mshifthash::mshifthash(uint _table_size = 0) :
-    M(std::log2(table_size)), w(64), one(1), table_size(_table_size) {
+    table_size(_table_size), w(64), one(1), M(std::log2(table_size)) {
         rehash();
 }
 
-uint mshifthash::hash(int key) {
+size_t mshifthash::hash(int key) {
     if (M == 0) return 0;
     return (alpha * key + betta) >> (w - M);
 }
 
 void mshifthash::rehash() {
-    alpha = random(gen) % (one << w - 1);
+    alpha = random(gen) % (one << (w - 1));
     if ((alpha % 2) == 0) ++alpha;
-    betta = random(gen) % (one << w - M - 1);
+    betta = random(gen) % (one << (w - M - 1));
 
     std::vector<bool> tmp_vec(table_size, false);
     is_in_table = tmp_vec;
