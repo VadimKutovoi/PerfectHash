@@ -1,4 +1,5 @@
 #include <vector>
+#include <climits>
 
 #include "include/multiply_shift_hash_table.h"
 
