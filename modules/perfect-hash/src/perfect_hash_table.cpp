@@ -1,3 +1,5 @@
+// Copyright 2019 Kutovoi Vadim
+
 #include <vector>
 
 #include "include/perfect_hash_table.h"
