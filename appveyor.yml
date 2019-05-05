@@ -1,0 +1,13 @@
+version: "{build}"
+
+platform:
+  - x64
+
+environment:
+  global:
+    CTEST_TARGET_SYSTEM: "Windows-x64"
+    CTEST_MODEL: "Experimental"
+    CTEST_WITH_SUBMIT: TRUE
+
+build_script:
+  - ctest -VV -S devtools_test.cmake
