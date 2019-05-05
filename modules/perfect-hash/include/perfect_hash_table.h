@@ -12,7 +12,7 @@ class perfhash : public unihash {
  private:
     std::vector<unihash> main_table;
  public:
-    perfhash(uint _table_size);
+    explicit perfhash(uint _table_size);
 
     void buildTable(std::vector<int> data);
     int find(int key);
