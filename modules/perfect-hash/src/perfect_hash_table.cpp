@@ -11,12 +11,12 @@ inline void perfhash::buildTable(std::vector<int> data) {
     uint hash_result = 0;
     std::vector<std::vector<int>> prehash_table(data.size());
 
-    for (int i = 0; i < data.size(); i++) {
+    for (uint i = 0; i < data.size(); i++) {
         hash_result = hash(data[i]);
         prehash_table[hash_result].push_back(data[i]);
     }
 
-    for (int i = 0; i < prehash_table.size(); i++) {
+    for (uint i = 0; i < prehash_table.size(); i++) {
         if (prehash_table[i].size() > 0) {
             unihash secondLvlTable(prehash_table[i].size() *
                                    prehash_table[i].size());

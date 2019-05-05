@@ -19,7 +19,7 @@ unihash::unihash(uint _table_size = 0) {
 }
 
 uint unihash::hash(int key) {
-    if (alpha == -1 || betta == -1) rehash();
+    if (alpha == 0 || betta == 0) rehash();
     if (table_size == 1) return 0;
     return (alpha * key + betta) % prime % table_size;
 }
