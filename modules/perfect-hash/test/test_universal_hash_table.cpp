@@ -8,6 +8,13 @@
 
 TEST(UniversalHashTest,
     Can_Create_Table_With_Default_Constructor) {
+    unihash uh_table();
+
+    ASSERT_NO_THROW();
+}
+
+TEST(UniversalHashTest,
+    Can_Create_Table_With_Int) {
     unihash uh_table(10);
 
     ASSERT_NO_THROW();

@@ -1,3 +1,5 @@
+// Copyright 2019 Kutovoi Vadim
+
 #include <vector>
 
 #include "include/universal_hash_table.h"
@@ -6,12 +8,6 @@
 std::mt19937 unihash::gen(time(0));
 std::uniform_int_distribution<uint> unihash::random(0, UINT32_MAX);
 
-unihash::unihash() {
-    table_size = 1;
-    table_size > 16 ? prime = 1198754321 : prime = 433494437;
-    rehash();
-}
-
 unihash::unihash(uint _table_size = 0) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
@@ -19,7 +15,7 @@ unihash::unihash(uint _table_size = 0) {
 }
 
 uint unihash::hash(int key) {
-    if (alpha == -1 || betta == -1) rehash();
+    if (alpha == 0 || betta == 0) rehash();
     if (table_size == 1) return 0;
     return (alpha * key + betta) % prime % table_size;
 }

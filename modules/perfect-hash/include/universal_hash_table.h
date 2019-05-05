@@ -13,9 +13,9 @@ using uint = unsigned int;
 
 class unihash {
  private:
-    uint prime = -1;
-    uint alpha = -1;
-    uint betta = -1;
+    uint prime = 0;
+    uint alpha = 0;
+    uint betta = 0;
 
     uint table_size;
 
