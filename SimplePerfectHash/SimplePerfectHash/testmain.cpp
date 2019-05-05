@@ -1,12 +1,13 @@
-#include "SUH.h"
-#include "SPH.h"
+#include "universal_hash_table.h"
+#include "perfect_hash_table.h"
+#include "multiply_shift_hash_table.h"
 #include <iostream>
 #include <set>
 #include <chrono>
 #include <map>
 
-#define HASH_TABLE_SIZE  1000000
-#define DATA_VECTOR_SIZE 1000000
+#define HASH_TABLE_SIZE  10000
+#define DATA_VECTOR_SIZE 300
 
 int main() {
     uint err_count = 0;
@@ -33,52 +34,72 @@ int main() {
     auto time_map = end_time_map - start_time_map;
     std::cout << "Map time : " << time_map / std::chrono::milliseconds(1) << std::endl;*/
     
+   // MULTIPLY SHIFT HASH TESTING
+    
+    mshifthash msh(HASH_TABLE_SIZE);
 
-    // UNIVERSAL HASH TESTING
+    std::cout << "MULTIPLY SHIFT HASHING..." << std::endl;
 
-    //unihash uh(HASH_TABLE_SIZE);
+    msh.buildTable(test_data);
 
-    //std::cout << "Unihashing..." << std::endl;
+    std::cout << "    Comparing results..." << std::endl;
 
-    //uh.buildTable(test_data);
+    for (int i = 0; i < DATA_VECTOR_SIZE; ++i) {
+        int item = msh.find(test_data[i]);
+        if (test_data[i] != item) {
+            std::cout << "    Error! Element " << test_data[i] << " not in table!" << std::endl;
+            err_count++;
+        }
+    }
 
-    //std::cout << "Comparing unihash results..." << std::endl;
+    if (err_count == 0) std::cout << "    No errors" << std::endl;
+    else std::cout << "    Hashing failed with " << err_count << " errors!" << std::endl;
 
-    //
+   // UNIVERSAL HASH TESTING
 
-    //for (int i = 0; i < DATA_VECTOR_SIZE; ++i) {
-    //    int item = uh.find(test_data[i]);
-    //    if (test_data[i] != item) {
-    //        std::cout << "Error! Element " << test_data[i] << " not in table!" << std::endl;
-    //        err_count++;
-    //    }
-    //}
+    mshifthash uh(HASH_TABLE_SIZE);
 
-    //if (err_count == 0) std::cout << "No errors" << std::endl;
-    //else std::cout << "Hashing failed with " << err_count << " errors!" << std::endl;
+    std::cout << "UNIVERSAL HASHING..." << std::endl;
+
+    uh.buildTable(test_data);
+
+    std::cout << "    Comparing unihash results..." << std::endl;
+
+    for (int i = 0; i < DATA_VECTOR_SIZE; ++i) {
+        int item = uh.find(test_data[i]);
+        if (test_data[i] != item) {
+            std::cout << "    Error! Element " << test_data[i] << " not in table!" << std::endl;
+            err_count++;
+        }
+    }
+
+    if (err_count == 0) std::cout << "    No errors" << std::endl;
+    else std::cout << "    Hashing failed with " << err_count << " errors!" << std::endl;
+
+
 
     //PERFECT HASH TESTING
     
     perfhash ph(test_data.size());
 
-    std::cout << "Perfhashing..." << std::endl;
+    std::cout << "PERFECT HASHING..." << std::endl;
 
     auto start_time = std::chrono::high_resolution_clock::now();
     ph.buildTable(test_data);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto time = end_time - start_time;
 
-    std::cout << "Time : " << time / std::chrono::milliseconds(1) << std::endl;
-    std::cout << "Comparing perfhash results..." << std::endl;
+    std::cout << "    Time : " << time / std::chrono::milliseconds(1) << std::endl;
+    std::cout << "    Comparing perfhash results..." << std::endl;
 
     err_count = 0;
     for (int i = 0; i < test_data.size(); ++i) {
         int item = ph.find(test_data[i]);
         if (test_data[i] != item) {
-            std::cout << "Error! Element " << test_data[i] << " not in table!" << std::endl;
+            std::cout << "    Error! Element " << test_data[i] << " not in table!" << std::endl;
         }
     }
 
-    if (err_count == 0) std::cout << "No errors" << std::endl;
+    if (err_count == 0) std::cout << "    No errors" << std::endl;
     else std::cout << "Hashing failed with " << err_count << " errors!" << std::endl;
 }
