@@ -33,8 +33,11 @@ class unihash {
     void rehash();
 
     uint add(int item);
+    uint remove(int item);
+    uint getCell(int cell_number);
+
     int find(int item);
-    int getCell(int cell_number);
+
     void buildTable(std::vector<int> data);
 
     uint getAlpha() { return alpha; }
