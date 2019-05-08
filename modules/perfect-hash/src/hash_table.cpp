@@ -25,8 +25,7 @@ bool hashTable::add(int64_t item)
         table[position] = item;
         is_in_table[position] = true;
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -37,8 +36,7 @@ bool hashTable::remove(int64_t item)
     if (is_in_table[pos] && table[pos] == item) {
         is_in_table[pos] = false;
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -53,8 +51,7 @@ int64_t hashTable::find(int64_t item)
     hashTable::ullong pos = hash(item);
     if (is_in_table[pos]) {
         return table[pos];
-    }
-    else {
+    } else {
         return -1;  // ERROR: not in table!
     }
 }
@@ -72,8 +69,7 @@ unsigned hashTable::buildTable(std::vector<int64_t> data)
             hash_result = false;
             retries++;
             continue;
-        }
-        else if (i == data.size()) {
+        } else if (i == data.size()) {
             break;
         }
     }
