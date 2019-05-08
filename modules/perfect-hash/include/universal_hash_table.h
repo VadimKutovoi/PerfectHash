@@ -32,8 +32,9 @@ class unihash {
     uint hash(int key);
     void rehash();
 
-    uint add(int item);
-    uint remove(int item);
+    bool add(int item);
+    bool remove(int item);
+
     uint getCell(int cell_number);
 
     int find(int item);
