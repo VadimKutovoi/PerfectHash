@@ -6,20 +6,17 @@
 
 #include "include/hash_table.h"
 
-hashTable::hashTable()
-{
+hashTable::hashTable() {
     table_size = 0;
 }
 
-hashTable::hashTable(ullong _table_size)
-{
+hashTable::hashTable(ullong _table_size) {
     table_size = _table_size;
     std::vector<int64_t> tmp(table_size);
     table = tmp;
 }
 
-bool hashTable::add(int64_t item)
-{
+bool hashTable::add(int64_t item) {
     hashTable::ullong position = hash(item);
     if (!is_in_table[position]) {
         table[position] = item;
@@ -30,8 +27,7 @@ bool hashTable::add(int64_t item)
     }
 }
 
-bool hashTable::remove(int64_t item)
-{
+bool hashTable::remove(int64_t item) {
     hashTable::ullong pos = hash(item);
     if (is_in_table[pos] && table[pos] == item) {
         is_in_table[pos] = false;
@@ -41,13 +37,11 @@ bool hashTable::remove(int64_t item)
     }
 }
 
-hashTable::ullong hashTable::getCell(int64_t cell_number)
-{
+hashTable::ullong hashTable::getCell(int64_t cell_number) {
     return table.at(cell_number);
 }
 
-int64_t hashTable::find(int64_t item)
-{
+int64_t hashTable::find(int64_t item) {
     hashTable::ullong pos = hash(item);
     if (is_in_table[pos]) {
         return table[pos];
@@ -56,8 +50,7 @@ int64_t hashTable::find(int64_t item)
     }
 }
 
-unsigned hashTable::buildTable(std::vector<int64_t> data)
-{
+unsigned hashTable::buildTable(std::vector<int64_t> data) {
     unsigned i = 0, retries = 0;
 
     while (true) {
