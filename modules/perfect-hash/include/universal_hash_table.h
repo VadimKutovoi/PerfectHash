@@ -19,8 +19,6 @@ class unihash : public hashTable {
     ullong getAlpha() { return alpha; }
     ullong getBetta() { return betta; }
 
-    hashTable::add;
-
     hashTable::ullong hash(int64_t key);
     void rehash();
 

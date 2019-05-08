@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "../include/perfect_hash_table.h"
 #include "../../../3rdparty/gtest/gtest.h"
