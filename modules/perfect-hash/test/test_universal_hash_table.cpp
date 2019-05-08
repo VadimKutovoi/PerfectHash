@@ -3,8 +3,8 @@
 #include <string>
 #include <iostream>
 
-#include "..\include\universal_hash_table.h"
-#include "..\..\..\3rdparty\gtest\gtest.h"
+#include "../include/universal_hash_table.h"
+#include "../../../3rdparty/gtest/gtest.h"
 
 TEST(UniversalHashTest,
     Can_Create_Table_With_Default_Constructor) {

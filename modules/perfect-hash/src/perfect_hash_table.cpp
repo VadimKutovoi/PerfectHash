@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "include\perfect_hash_table.h"
+#include "../include/perfect_hash_table.h"
 
 perfhash::perfhash(ullong _table_size) : unihash(_table_size) {
     std::vector<unihash> tmp_table(_table_size);

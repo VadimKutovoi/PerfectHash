@@ -3,8 +3,8 @@
 #include <string>
 #include <iostream>
 
-#include "..\include\perfect_hash_table.h"
-#include "..\..\..\3rdparty\gtest\gtest.h"
+#include "../include/perfect_hash_table.h"
+#include "../../../3rdparty/gtest/gtest.h"
 
 TEST(PerfectHashTest,
     No_Throw_When_Build_Table_From_Vector) {

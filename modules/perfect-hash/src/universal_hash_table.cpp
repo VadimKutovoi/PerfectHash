@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "include/universal_hash_table.h"
+#include "../include/universal_hash_table.h"
 
 std::mt19937 unihash::gen(time(0));
 std::uniform_int_distribution<hashTable::ullong> unihash::random(0, UINT32_MAX);
