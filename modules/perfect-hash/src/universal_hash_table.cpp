@@ -7,8 +7,7 @@
 std::mt19937 unihash::gen(time(0));
 std::uniform_int_distribution<hashTable::ullong> unihash::random(0, UINT32_MAX);
 
-unihash::unihash()
-{
+unihash::unihash() {
     table_size = 0;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
     rehash();
