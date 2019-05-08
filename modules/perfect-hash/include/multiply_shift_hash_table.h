@@ -1,18 +1,15 @@
 // Copyright 2019 Kutovoi Vadim
 
 #include <vector>
-#include <list>
 #include <random>
 #include <ctime>
-#include <iostream>
 
-using uint = unsigned int;
-using ullong = uint64_t;
+#include "../include/hash_table.h"
 
 #ifndef MODULES_PERFECT_HASH_INCLUDE_MULTIPLY_SHIFT_HASH_TABLE_H_
 #define MODULES_PERFECT_HASH_INCLUDE_MULTIPLY_SHIFT_HASH_TABLE_H_
 
-class mshifthash {
+class mshifthash : public hashTable {
  private:
     ullong alpha = -1;
     ullong betta = -1;
@@ -22,26 +19,18 @@ class mshifthash {
     size_t w;
     size_t M;
 
-    std::vector<bool> is_in_table;
-    std::vector<int> table;
-
     static std::mt19937 gen;
     static std::uniform_int_distribution<ullong> random;
 
  public:
-    explicit mshifthash(uint _table_size);
+    explicit mshifthash(int64_t _table_size);
 
-    size_t hash(int key);
+    ullong hash(int64_t key);
     void rehash();
 
-    uint add(int item);
-    int find(int item);
-    int getCell(int cell_number);
-    void buildTable(std::vector<int> data);
-
-    uint getAlpha() { return alpha; }
-    uint getBetta() { return betta; }
-    uint getSize() { return table_size; }
+    ullong getAlpha() { return alpha; }
+    ullong getBetta() { return betta; }
+    ullong getSize() { return table_size; }
 
     std::mt19937 getGen() { return gen; }
     std::uniform_int_distribution<ullong> getRandom() { return random; }
