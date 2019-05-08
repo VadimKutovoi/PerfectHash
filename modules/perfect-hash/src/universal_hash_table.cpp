@@ -43,13 +43,12 @@ uint unihash::add(int item) {
     }
 }
 
-uint unihash::remove(int item)
-{
+uint unihash::remove(int item) {
     int pos = hash(item);
     if (is_in_table[pos] && table[pos] == item) {
         is_in_table[pos] = false;
-    }
-    else {
+        return pos;
+    } else {
         return -1;
     }
 }
