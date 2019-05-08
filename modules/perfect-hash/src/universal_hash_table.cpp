@@ -57,8 +57,9 @@ uint unihash::getCell(int cell_number) {
     return table.at(cell_number);
 }
 
-void unihash::buildTable(std::vector<int> data) {
+uint unihash::buildTable(std::vector<int> data) {
     uint i = 0;
+    uint retries = 0;
 
     while (true) {
         bool hash_result = add(data[i]);
@@ -67,10 +68,13 @@ void unihash::buildTable(std::vector<int> data) {
             rehash();
             i = 0;
             hash_result = false;
+            retries++;
+            continue;
         } else if (i == data.size()) {
             break;
         }
     }
+    return retries;
 }
 
 int unihash::find(int item) {

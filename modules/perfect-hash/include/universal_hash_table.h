@@ -39,7 +39,7 @@ class unihash {
 
     int find(int item);
 
-    void buildTable(std::vector<int> data);
+    uint buildTable(std::vector<int> data);
 
     uint getAlpha() { return alpha; }
     uint getBetta() { return betta; }

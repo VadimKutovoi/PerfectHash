@@ -9,16 +9,12 @@
 
 TEST(UniversalHashTest,
     Can_Create_Table_With_Default_Constructor) {
-    unihash table();
-
-    ASSERT_NO_THROW();
+    ASSERT_NO_THROW(unihash table());
 }
 
 TEST(UniversalHashTest,
     Can_Create_Table_With_Int) {
-    unihash table(10);
-
-    ASSERT_NO_THROW();
+    ASSERT_NO_THROW(unihash table(10));
 }
 
 TEST(UniversalHashTest,
@@ -54,4 +50,12 @@ TEST(UniversalHashTest,
     int item = table.find(5);
 
     EXPECT_EQ(-1, item);
+}
+
+TEST(UniversalHashTest,
+    No_Throw_When_Build_Table_From_Vector) {
+    unihash table(25);
+    std::vector<int> data = { 0, 1, 2, 4, 5 };
+
+    ASSERT_NO_THROW(table.buildTable(data));
 }
