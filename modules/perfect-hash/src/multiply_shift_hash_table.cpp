@@ -3,7 +3,7 @@
 #include <vector>
 #include <climits>
 
-#include "include\multiply_shift_hash_table.h"
+#include "../include/multiply_shift_hash_table.h"
 
 
 std::mt19937 mshifthash::gen(time(0));
