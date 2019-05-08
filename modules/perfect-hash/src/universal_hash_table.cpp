@@ -59,10 +59,9 @@ uint unihash::getCell(int cell_number) {
 
 void unihash::buildTable(std::vector<int> data) {
     uint i = 0;
-    bool hash_result = false;
 
     while (true) {
-        hash_result = add(data[i]);
+        bool hash_result = add(data[i]);
         i++;
         if (!hash_result) {
             rehash();
