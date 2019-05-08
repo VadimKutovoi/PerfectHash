@@ -32,43 +32,52 @@ void unihash::rehash() {
     table = tmp_table;
 }
 
-uint unihash::add(int item) {
+bool unihash::add(int item) {
     uint position = hash(item);
     if (!is_in_table[position]) {
         table[position] = item;
         is_in_table[position] = true;
-        return 0;
+        return true;
     } else {
-        return 1;
+        return false;
     }
 }
 
-inline int unihash::getCell(int cell_number) {
+bool unihash::remove(int item) {
+    int pos = hash(item);
+    if (is_in_table[pos] && table[pos] == item) {
+        is_in_table[pos] = false;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+uint unihash::getCell(int cell_number) {
     return table.at(cell_number);
 }
 
-inline void unihash::buildTable(std::vector<int> data) {
-    uint i = 0, hash_result = 0;
+void unihash::buildTable(std::vector<int> data) {
+    uint i = 0;
 
     while (true) {
-        hash_result = add(data[i]);
+        bool hash_result = add(data[i]);
         i++;
-        if (hash_result == 1) {
+        if (!hash_result) {
             rehash();
             i = 0;
-            hash_result = 0;
+            hash_result = false;
         } else if (i == data.size()) {
             break;
         }
     }
 }
 
-inline int unihash::find(int item) {
+int unihash::find(int item) {
     uint pos = hash(item);
     if (is_in_table[pos]) {
         return table[pos];
     } else {
-        std::cout << "ERROR:" << item << " not in table!" << std::endl;
-        return -1;
+        return -1;  // ERROR: not in table!
     }
 }
