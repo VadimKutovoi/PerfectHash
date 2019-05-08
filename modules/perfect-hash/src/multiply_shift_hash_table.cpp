@@ -7,7 +7,8 @@
 
 
 std::mt19937 mshifthash::gen(time(0));
-std::uniform_int_distribution<hashTable::ullong> mshifthash::random(0, ULLONG_MAX);
+std::uniform_int_distribution<hashTable::ullong>
+                mshifthash::random(0, ULLONG_MAX);
 
 mshifthash::mshifthash(int64_t _table_size = 0) :
     table_size(_table_size), one(1), w(64), M(std::log2(table_size)) {

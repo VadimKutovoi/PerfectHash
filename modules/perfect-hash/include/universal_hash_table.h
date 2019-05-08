@@ -25,7 +25,7 @@ class unihash : public hashTable {
     std::mt19937 getGen() { return gen; }
     std::uniform_int_distribution<ullong> getRandom() { return random; }
 
-private:
+ private:
     ullong prime = 0;
     ullong alpha = 0;
     ullong betta = 0;
