@@ -79,6 +79,6 @@ int unihash::find(int item) {
     if (is_in_table[pos]) {
         return table[pos];
     } else {
-        return -1; // ERROR: not in table!
+        return -1;  // ERROR: not in table!
     }
 }
