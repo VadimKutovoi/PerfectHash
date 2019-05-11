@@ -10,7 +10,6 @@ addons:
   apt:
     packages:
       - valgrind
-      - cppcheck
 
 env:
   global:
@@ -26,9 +25,6 @@ matrix:
     - os: linux
       compiler: gcc
       env: CTEST_TARGET_SYSTEM=Linux-gcc    CTEST_MODEL=MemCheck
-    - os: linux
-      compiler: gcc
-      env: CTEST_TARGET_SYSTEM=Linux-gcc    CTEST_MODEL=CodeCheck
 
 install:
   - if [ "${CTEST_MODEL}" == "Coverage" ]; then
