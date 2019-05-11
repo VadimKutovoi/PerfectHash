@@ -2,35 +2,31 @@
 
 #include <vector>
 
-#include "include/perfect_hash_table.h"
+#include "../include/perfect_hash_table.h"
 
-perfhash::perfhash(uint _table_size) : unihash(_table_size) {
+perfhash::perfhash(ullong _table_size) : unihash(_table_size) {
     std::vector<unihash> tmp_table(_table_size);
     main_table = tmp_table;
 }
 
-inline void perfhash::buildTable(std::vector<int> data) {
-    uint hash_result = 0;
-    std::vector<std::vector<int>> prehash_table(data.size());
+void perfhash::buildTable(std::vector<int64_t> data) {
+    ullong hash_result = 0;
+    std::vector<std::vector<int64_t>> prehash_table(data.size());
 
-    for (uint i = 0; i < data.size(); i++) {
-        hash_result = hash(data[i]);
-        prehash_table[hash_result].push_back(data[i]);
+    for (auto i : data) {
+        hash_result = hash(i);
+        prehash_table[hash_result].push_back(i);
     }
 
-    for (uint i = 0; i < prehash_table.size(); i++) {
-        if (prehash_table[i].size() > 0) {
-            unihash secondLvlTable(prehash_table[i].size() *
-                                   prehash_table[i].size());
-            main_table[i] = secondLvlTable;
+    unsigned pos = 0;
+    for (auto i : prehash_table) {
+        if (i.size() > 0) {
+            unihash secondLvlTable(i.size() *
+                                   i.size());
+            main_table[pos] = secondLvlTable;
 
-            main_table[i].buildTable(prehash_table[i]);
+            main_table[pos].buildTable(i);
+            pos++;
         }
     }
-}
-
-int perfhash::find(int key) {
-    uint first_lvl_hash_result = hash(key);
-
-    return main_table[first_lvl_hash_result].find(key);
 }

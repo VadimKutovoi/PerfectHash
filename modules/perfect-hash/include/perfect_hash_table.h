@@ -12,10 +12,9 @@ class perfhash : public unihash {
  private:
     std::vector<unihash> main_table;
  public:
-    explicit perfhash(uint _table_size);
+    explicit perfhash(ullong _table_size);
 
-    void buildTable(std::vector<int> data);
-    int find(int key);
+    void buildTable(std::vector<int64_t> data);
 };
 
 #endif  // MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_

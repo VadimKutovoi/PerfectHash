@@ -4,49 +4,34 @@
 #include <list>
 #include <random>
 #include <ctime>
-#include <iostream>
 
-using uint = unsigned int;
+#include "../include/hash_table.h"
+
 
 #ifndef MODULES_PERFECT_HASH_INCLUDE_UNIVERSAL_HASH_TABLE_H_
 #define MODULES_PERFECT_HASH_INCLUDE_UNIVERSAL_HASH_TABLE_H_
 
-class unihash {
- private:
-    uint prime = 0;
-    uint alpha = 0;
-    uint betta = 0;
-
-    uint table_size;
-
-    std::vector<bool> is_in_table;
-    std::vector<int> table;
-
-    static std::mt19937 gen;
-    static std::uniform_int_distribution<uint> random;
-
+class unihash : public hashTable {
  public:
     unihash();
-    explicit unihash(uint _table_size);
+    explicit unihash(hashTable::ullong _table_size);
 
-    uint hash(int key);
+    ullong getAlpha() { return alpha; }
+    ullong getBetta() { return betta; }
+
+    hashTable::ullong hash(int64_t key);
     void rehash();
 
-    bool add(int item);
-    bool remove(int item);
-
-    uint getCell(int cell_number);
-
-    int find(int item);
-
-    void buildTable(std::vector<int> data);
-
-    uint getAlpha() { return alpha; }
-    uint getBetta() { return betta; }
-    uint getSize() { return table_size; }
-
     std::mt19937 getGen() { return gen; }
-    std::uniform_int_distribution<uint> getRandom() { return random; }
+    std::uniform_int_distribution<ullong> getRandom() { return random; }
+
+ private:
+    ullong prime = 0;
+    ullong alpha = 0;
+    ullong betta = 0;
+
+    static std::mt19937 gen;
+    static std::uniform_int_distribution<ullong> random;
 };
 
 #endif  // MODULES_PERFECT_HASH_INCLUDE_UNIVERSAL_HASH_TABLE_H_
