@@ -9,7 +9,7 @@
 
 TEST(PerfectHashTest,
     No_Throw_When_Build_Table_From_Vector) {
-    std::vector<int64_t> data = { 0, 1, 2, 4, 5 };
+    std::vector<perfhash::ullong> data = { 0, 1, 2, 4, 5 };
     perfhash table(data.size());
 
     ASSERT_NO_THROW(table.buildTable(data));

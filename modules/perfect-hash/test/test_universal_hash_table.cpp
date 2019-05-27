@@ -55,7 +55,7 @@ TEST(UniversalHashTest,
 TEST(UniversalHashTest,
     No_Throw_When_Build_Table_From_Vector) {
     unihash table(25);
-    std::vector<int64_t> data = { 0, 1, 2, 4, 5 };
+    std::vector<unihash::ullong> data = { 0, 1, 2, 4, 5 };
 
     ASSERT_NO_THROW(table.buildTable(data));
 }

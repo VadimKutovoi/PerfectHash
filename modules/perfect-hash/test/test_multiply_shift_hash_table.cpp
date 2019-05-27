@@ -55,7 +55,7 @@ TEST(MshiftHashTest,
 TEST(MshiftHashTest,
     No_Throw_When_Build_Table_From_Vector) {
     mshifthash table(25);
-    std::vector<int64_t> data = { 0, 1, 2, 4, 5 };
+    std::vector<mshifthash::ullong> data = { 0, 1, 2, 4, 5 };
 
     ASSERT_NO_THROW(table.buildTable(data));
 }
