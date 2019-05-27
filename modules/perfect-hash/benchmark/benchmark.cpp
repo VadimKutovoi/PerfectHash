@@ -14,7 +14,7 @@
 #define TABLE_SIZE_RATIO 1.5
 #define HASHING_DATA_TYPE unihash::ullong
 
-int main(int *argc, char **argv) {
+int main(int argc, char **argv) {
     std::vector<HASHING_DATA_TYPE> data(DATA_VECTOR_SIZE);
 
     static std::mt19937 gen;
