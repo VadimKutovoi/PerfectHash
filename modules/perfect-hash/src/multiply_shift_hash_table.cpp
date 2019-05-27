@@ -10,12 +10,13 @@ std::mt19937 mshifthash::gen(time(0));
 std::uniform_int_distribution<hashTable::ullong>
                 mshifthash::random(0, ULLONG_MAX);
 
-mshifthash::mshifthash(int64_t _table_size = 0) :
-    table_size(_table_size), one(1), w(64), M(std::log2(table_size)) {
+mshifthash::mshifthash(ullong _table_size = 0) : 
+    one(1), w(64), M(std::log2(_table_size)) {
+    table_size = _table_size;
     rehash();
 }
 
-hashTable::ullong mshifthash::hash(int64_t key) {
+hashTable::ullong mshifthash::hash(ullong key) {
     if (M == 0) return 0;
     return (alpha * key + betta) >> (w - M);
 }
@@ -28,6 +29,6 @@ void mshifthash::rehash() {
     std::vector<bool> tmp_vec(table_size, false);
     is_in_table = tmp_vec;
 
-    std::vector<int64_t> tmp_table(table_size, 0);
+    std::vector<ullong> tmp_table(table_size, 0);
     table = tmp_table;
 }

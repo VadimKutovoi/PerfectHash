@@ -1,7 +1,6 @@
 // Copyright 2019 Kutovoi Vadim
 
 #include <vector>
-#include <list>
 #include <random>
 #include <ctime>
 
@@ -19,7 +18,7 @@ class unihash : public hashTable {
     ullong getAlpha() { return alpha; }
     ullong getBetta() { return betta; }
 
-    hashTable::ullong hash(int64_t key);
+    hashTable::ullong hash(ullong key);
     void rehash();
 
     std::mt19937 getGen() { return gen; }

@@ -19,7 +19,7 @@ unihash::unihash(hashTable::ullong _table_size = 0) {
     rehash();
 }
 
-hashTable::ullong unihash::hash(int64_t key) {
+hashTable::ullong unihash::hash(ullong key) {
     if (alpha == 0 || betta == 0) rehash();
     if (table_size == 1) return 0;
     return (alpha * key + betta) % prime % table_size;
@@ -33,6 +33,6 @@ void unihash::rehash() {
     std::vector<bool> tmp_vec(table_size, false);
     is_in_table = tmp_vec;
 
-    std::vector<int64_t> tmp_table(table_size, 0);
+    std::vector<ullong> tmp_table(table_size, 0);
     table = tmp_table;
 }

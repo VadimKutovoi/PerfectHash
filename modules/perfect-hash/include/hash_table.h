@@ -14,21 +14,21 @@ class hashTable {
      hashTable();
      explicit hashTable(ullong _table_size);
 
-     virtual ullong hash(int64_t key) { return ullong{}; }
+     virtual ullong hash(ullong key) { return ullong{}; }
      virtual void rehash() {}
 
-     bool add(int64_t item);
-     bool remove(int64_t item);
+     bool add(ullong item);
+     bool remove(ullong item);
 
-     ullong getCell(int64_t cell_number);
+     ullong getCell(ullong cell_number);
 
-     int64_t find(int64_t item);
+     ullong find(ullong item);
 
-     unsigned buildTable(std::vector<int64_t> data);
+     unsigned buildTable(std::vector<ullong> data);
 
  protected:
      std::vector<bool> is_in_table;
-     std::vector<int64_t> table;
+     std::vector<ullong> table;
      ullong table_size;
 };
 

@@ -9,9 +9,9 @@ perfhash::perfhash(ullong _table_size) : unihash(_table_size) {
     main_table = tmp_table;
 }
 
-void perfhash::buildTable(std::vector<int64_t> data) {
+void perfhash::buildTable(std::vector<ullong> data) {
     ullong hash_result = 0;
-    std::vector<std::vector<int64_t>> prehash_table(data.size());
+    std::vector<std::vector<ullong>> prehash_table(data.size());
 
     for (auto i : data) {
         hash_result = hash(i);

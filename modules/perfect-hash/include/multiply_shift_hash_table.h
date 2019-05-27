@@ -13,7 +13,6 @@ class mshifthash : public hashTable {
  private:
     ullong alpha = -1;
     ullong betta = -1;
-    ullong table_size;
     ullong one = 1;
 
     size_t w;
@@ -23,9 +22,9 @@ class mshifthash : public hashTable {
     static std::uniform_int_distribution<ullong> random;
 
  public:
-    explicit mshifthash(int64_t _table_size);
+    explicit mshifthash(ullong _table_size);
 
-    ullong hash(int64_t key);
+    ullong hash(ullong key);
     void rehash();
 
     ullong getAlpha() { return alpha; }

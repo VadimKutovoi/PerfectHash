@@ -14,7 +14,7 @@ class perfhash : public unihash {
  public:
     explicit perfhash(ullong _table_size);
 
-    void buildTable(std::vector<int64_t> data);
+    void buildTable(std::vector<ullong> data);
 };
 
 #endif  // MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_
