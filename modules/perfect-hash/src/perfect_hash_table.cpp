@@ -26,7 +26,14 @@ void perfhash::buildTable(std::vector<ullong> data) {
             main_table[pos] = secondLvlTable;
 
             main_table[pos].buildTable(i);
-            pos++;
         }
+        pos++;
     }
+}
+
+unihash::ullong perfhash::find(ullong item)
+{
+    ullong first_lvl_position = hash(item);
+
+    return main_table[first_lvl_position].find(item);
 }

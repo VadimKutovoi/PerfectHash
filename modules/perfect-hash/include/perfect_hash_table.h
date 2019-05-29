@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <omp.h>
 
 #include "include/universal_hash_table.h"
 
@@ -15,6 +16,7 @@ class perfhash : public unihash {
     explicit perfhash(ullong _table_size);
 
     void buildTable(std::vector<ullong> data);
+    ullong find(ullong item);
 };
 
 #endif  // MODULES_PERFECT_HASH_INCLUDE_PERFECT_HASH_TABLE_H_

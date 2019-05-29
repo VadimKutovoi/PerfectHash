@@ -16,6 +16,7 @@ unihash::unihash() {
 unihash::unihash(hashTable::ullong _table_size = 0) {
     table_size = _table_size;
     table_size > 16 ? prime = 1198754321 : prime = 433494437;
+    //table_size > 16 ? prime = 2305843009213693951 : prime = 433494437;
     rehash();
 }
 

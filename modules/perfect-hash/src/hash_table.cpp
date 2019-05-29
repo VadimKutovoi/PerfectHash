@@ -58,7 +58,7 @@ unsigned hashTable::buildTable(std::vector<ullong> data) {
         bool hash_result = add(data[i]);
         i++;
         if (!hash_result) {
-            //std::cout << "COLLISION! Rehashing..." << std::endl;
+            //std::cout << "COLLISION on step " << i <<  "! Rehashing..." << std::endl;
             rehash();
             i = 0;
             hash_result = false;

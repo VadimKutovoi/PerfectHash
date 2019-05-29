@@ -22,6 +22,7 @@ class mshifthash : public hashTable {
     static std::uniform_int_distribution<ullong> random;
 
  public:
+    mshifthash();
     explicit mshifthash(ullong _table_size);
 
     ullong hash(ullong key);
