@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 #endif
 
     for (auto i : data) {
-        int64_t el = 0;
+        uint64_t el = 0;
         el = table1.find(i);
         if (el != i) std::cout << "ERROR in perfhash : " << i << "!=" << el << std::endl;
         el = table2.find(i);
