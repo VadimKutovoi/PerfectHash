@@ -20,14 +20,13 @@ void perfhash_mshift::buildTable(std::vector<ullong> data) {
     }
 
     unsigned pos = 0;
-
-    for (int i = 0; i < prehash_table.size(); i++) {
-        if (prehash_table[i].size() > 0) {
-            mshifthash secondLvlTable(prehash_table[i].size() *
-                prehash_table[i].size());
+    for (auto i : prehash_table) {
+        if (i.size() > 0) {
+            mshifthash secondLvlTable(i.size() *
+                                   i.size());
             main_table[pos] = secondLvlTable;
 
-            main_table[pos].buildTable(prehash_table[i]);
+            main_table[pos].buildTable(i);
         }
         pos++;
     }
